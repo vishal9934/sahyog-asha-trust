@@ -26,6 +26,7 @@ function mapEventData(strapiData: any[]): any[] {
       }
       return {
         id: item.id,
+        documentId: item.documentId,
         title: item.tittle,
         description: item.discription,
         date: item.createdAt,
@@ -38,7 +39,7 @@ function mapEventData(strapiData: any[]): any[] {
 export async function fetchEvents(page = 1, pageSize = 9) {
   const host = process.env.NEXT_PUBLIC_API_URL;
   const res = await fetch(
-    `${host}/api/events?populate=coverImage&pagination[page]=${page}&pagination[pageSize]=${pageSize}`
+    `${host}/api/events?populate=coverImage&pagination[page]=${page}&pagination[pageSize]=${pageSize}&sort=createdAt:desc`
   );
   if (!res.ok) throw new Error("Failed to fetch events");
   const data = await res.json();
@@ -51,4 +52,15 @@ export async function fetchEvents(page = 1, pageSize = 9) {
       total: 0,
     },
   };
+}
+
+export async function fetchEventByDocumentId(documentId: string) {
+  const host = process.env.NEXT_PUBLIC_API_URL;
+  const res = await fetch(
+    `${host}/api/events?filters[documentId][$eq]=${documentId}&populate=*`
+  );
+  if (!res.ok) throw new Error("Failed to fetch event");
+  const data = await res.json();
+  if (!data.data || !data.data.length) return null;
+  return data.data[0];
 }

@@ -8,6 +8,7 @@ import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
 import Layout from "@/components/Layout";
+import { useRouter } from "next/navigation";
 
 const CARDS_PER_PAGE = 9;
 
@@ -24,6 +25,7 @@ export default function NewsPage() {
     total: 0,
   });
   const topRef = useRef<HTMLDivElement>(null);
+  const router = useRouter();
 
   useEffect(() => {
     async function getEvents() {
@@ -78,7 +80,16 @@ export default function NewsPage() {
                 {events.map((event) => (
                   <article
                     key={event.id}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View details for ${event.title}`}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer focus:ring-2 focus:ring-emerald-500 outline-none"
+                    onClick={() => router.push(`/news/${event.documentId}`)}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        router.push(`/news/${event.documentId}`);
+                      }
+                    }}
                   >
                     <div className="relative overflow-hidden">
                       <Image
