@@ -1,39 +1,35 @@
 "use client";
 
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { Calendar, ArrowRight } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { format } from "date-fns";
 import Link from "next/link";
+import { Button } from "./ui/button";
+import { fetchEvents } from "@/lib/utils";
+import Image from "next/image";
 
 export default function NewsEvents() {
   const { t } = useLanguage();
 
-  // Sample news data
-  const newsData = [
-    {
-      id: "1",
-      titleKey: "news1Title",
-      descKey: "news1Desc",
-      image: "/images/edu.webp",
-      date: "2024-01-15",
-    },
-    {
-      id: "2",
-      titleKey: "news2Title",
-      descKey: "news2Desc",
-      image: "/images/beautiful.png",
-      date: "2024-02-20",
-    },
-    {
-      id: "3",
-      titleKey: "news3Title",
-      descKey: "news3Desc",
-      image: "/images/rural.jpg",
-      date: "2024-03-10",
-    },
-  ];
+  const [events, setEvents] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    async function getEvents() {
+      try {
+        const data = await fetchEvents();
+        setEvents(data.events); // use only the events array
+      } catch (err: any) {
+        setError("Failed to load events");
+      } finally {
+        setLoading(false);
+      }
+    }
+    getEvents();
+  }, []);
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -73,54 +69,67 @@ export default function NewsEvents() {
           </p>
         </motion.div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
-        >
-          {newsData.map((news) => (
-            <motion.article
-              key={news.id}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+        {loading ? (
+          <div className="text-center py-10 text-gray-500">Loading...</div>
+        ) : error ? (
+          <div className="text-center py-10 text-red-500">{error}</div>
+        ) : (
+          <div className="flex flex-col items-center justify-center gap-5">
+            <motion.div
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full"
             >
-              <div className="relative overflow-hidden">
-                <img
-                  src={news.image}
-                  alt={t(news.titleKey)}
-                  className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center space-x-2">
-                  <Calendar className="w-4 h-4 text-blue-600" />
-                  <span className="text-sm font-medium text-gray-700">
-                    {format(new Date(news.date), "dd/MM/yyyy")}
-                  </span>
-                </div>
-              </div>
-
-              <div className="p-6">
-                <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
-                  {t(news.titleKey)}
-                </h3>
-                <p className="text-gray-600 leading-relaxed mb-4">
-                  {t(news.descKey)}
-                </p>
-                <Link href={`/news/${news.id}`}>
-                  <motion.button
-                    whileHover={{ x: 5 }}
-                    className="inline-flex items-center space-x-2 text-blue-600 font-semibold hover:text-blue-700 transition-colors"
+              {events
+                .sort(
+                  (a, b) =>
+                    new Date(b.date).getTime() - new Date(a.date).getTime()
+                )
+                .slice(0, 3)
+                .map((event) => (
+                  <motion.article
+                    key={event.id}
+                    variants={itemVariants}
+                    whileHover={{ y: -10 }}
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
                   >
-                    <span>{t("readMore")}</span>
-                    <ArrowRight className="w-4 h-4" />
-                  </motion.button>
-                </Link>
-              </div>
-            </motion.article>
-          ))}
-        </motion.div>
+                    <div className="relative overflow-hidden">
+                      <Image
+                        src={event.image}
+                        alt={event.title}
+                        loading="lazy"
+                        width={600}
+                        height={250}
+                        className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-300"
+                      />
+                      <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm rounded-lg px-3 py-1 flex items-center space-x-2">
+                        <Calendar className="w-4 h-4 text-blue-600" />
+                        <span className="text-sm font-medium text-gray-700">
+                          {format(new Date(event.date), "dd/MM/yyyy")}
+                        </span>
+                      </div>
+                    </div>
+
+                    <div className="p-4 md:p-6">
+                      <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
+                        {event.title}
+                      </h3>
+                      <p className="text-gray-600 leading-relaxed">
+                        {event.description}
+                      </p>
+                    </div>
+                  </motion.article>
+                ))}
+            </motion.div>
+            <Link href="/news" passHref legacyBehavior>
+              <Button className="flex items-center justify-center mx-auto bg-green-500 hover:bg-green-400">
+                {t("seeAllActivities")} <ArrowRight className="w-4 h-4" />
+              </Button>
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

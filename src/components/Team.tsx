@@ -1,39 +1,39 @@
-'use client';
+"use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
-import { Linkedin, Mail } from 'lucide-react';
-import { useLanguage } from '@/contexts/LanguageContext';
+import React from "react";
+import { motion } from "framer-motion";
+import { Linkedin, Mail } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
 
 const teamMembers = [
   {
     id: 1,
-    name: 'Rajesh Kumar',
-    roleKey: 'president',
-    image: 'https://images.pexels.com/photos/1499327/pexels-photo-1499327.jpeg?auto=compress&cs=tinysrgb&w=400',
-    bio: 'Leading social change initiatives for over 20 years.'
+    name: "Rajesh Kumar",
+    roleKey: "president",
+    image: "/images/ngoLogo.png",
+    bio: "Leading social change initiatives for over 20 years.",
   },
   {
     id: 2,
-    name: 'Priya Sharma',
-    roleKey: 'secretary',
-    image: 'https://images.pexels.com/photos/1181686/pexels-photo-1181686.jpeg?auto=compress&cs=tinysrgb&w=400',
-    bio: 'Expert in community development and women empowerment.'
+    name: "Priya Sharma",
+    roleKey: "secretary",
+    image: "/images/ngoLogo.png",
+    bio: "Expert in community development and women empowerment.",
   },
   {
     id: 3,
-    name: 'Amit Patel',
-    roleKey: 'treasurer',
-    image: 'https://images.pexels.com/photos/1043471/pexels-photo-1043471.jpeg?auto=compress&cs=tinysrgb&w=400',
-    bio: 'Financial management and strategic planning specialist.'
+    name: "Amit Patel",
+    roleKey: "treasurer",
+    image: "/images/ngoLogo.png",
+    bio: "Financial management and strategic planning specialist.",
   },
   {
     id: 4,
-    name: 'Sunita Verma',
-    roleKey: 'coordinator',
-    image: 'https://images.pexels.com/photos/1239291/pexels-photo-1239291.jpeg?auto=compress&cs=tinysrgb&w=400',
-    bio: 'Coordinating programs and community outreach activities.'
-  }
+    name: "Sunita Verma",
+    roleKey: "coordinator",
+    image: "/images/ngoLogo.png",
+    bio: "Coordinating programs and community outreach activities.",
+  },
 ];
 
 export default function Team() {
@@ -44,9 +44,9 @@ export default function Team() {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
-      }
-    }
+        staggerChildren: 0.2,
+      },
+    },
   };
 
   const itemVariants = {
@@ -55,9 +55,9 @@ export default function Team() {
       opacity: 1,
       y: 0,
       transition: {
-        duration: 0.6
-      }
-    }
+        duration: 0.6,
+      },
+    },
   };
 
   return (
@@ -70,11 +70,11 @@ export default function Team() {
           className="text-center mb-8 md:mb-16"
         >
           <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            {t('teamTitle')}
+            {t("teamTitle")}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t('teamSubtitle')}
-          </p>  
+            {t("teamSubtitle")}
+          </p>
         </motion.div>
 
         <motion.div
@@ -116,7 +116,7 @@ export default function Team() {
                   </div>
                 </div>
               </div>
-              
+
               <div className="p-6 text-center">
                 <h3 className="text-xl font-bold text-gray-900 mb-2">
                   {member.name}

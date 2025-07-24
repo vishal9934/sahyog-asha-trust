@@ -31,8 +31,7 @@ const heroSlides = [
   },
   {
     id: 3,
-    image:
-      "https://images.pexels.com/photos/6646942/pexels-photo-6646942.jpeg?auto=compress&cs=tinysrgb&w=1200",
+    image: "/images/edu.webp",
     titleKey: "slide3Title",
     subtitleKey: "slide3Subtitle",
     descriptionKey: "slide3Description",

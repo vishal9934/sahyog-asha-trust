@@ -29,38 +29,32 @@ const mediaData = {
   all: [
     {
       id: 1,
-      image:
-        "https://images.pexels.com/photos/6646917/pexels-photo-6646917.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/images/ngoLogo.png",
       year: "2025",
     },
     {
       id: 2,
-      image:
-        "https://images.pexels.com/photos/6646918/pexels-photo-6646918.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/images/ngoLogo.png",
       year: "2025",
     },
     {
       id: 3,
-      image:
-        "https://images.pexels.com/photos/6646919/pexels-photo-6646919.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/images/ngoLogo.png",
       year: "2024",
     },
     {
       id: 4,
-      image:
-        "https://images.pexels.com/photos/6647003/pexels-photo-6647003.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/images/ngoLogo.png",
       year: "2024",
     },
     {
       id: 5,
-      image:
-        "https://images.pexels.com/photos/6647112/pexels-photo-6647112.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/images/ngoLogo.png",
       year: "2023",
     },
     {
       id: 6,
-      image:
-        "https://images.pexels.com/photos/6647264/pexels-photo-6647264.jpeg?auto=compress&cs=tinysrgb&w=800",
+      image: "/images/ngoLogo.png",
       year: "2023",
     },
   ],

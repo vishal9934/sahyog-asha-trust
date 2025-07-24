@@ -71,6 +71,7 @@ const translations = {
     newsTitle: "Recent Activities",
     newsSubtitle: "Stay updated with our latest activities",
     readMore: "Read More",
+    seeAllActivities: "See All Activities",
 
     // News & Media Dropdown
     allNews: "All News & Events",
@@ -213,6 +214,7 @@ const translations = {
     newsTitle: "हाल की गतिविधियाँ",
     newsSubtitle: "हमारी नवीनतम गतिविधियों से अपडेट रहें",
     readMore: "और पढ़ें",
+    seeAllActivities: "सभी गतिविधियाँ देखें",
 
     // News & Media Dropdown
     allNews: "सभी समाचार और कार्यक्रम",
