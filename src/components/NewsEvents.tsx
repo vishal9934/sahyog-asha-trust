@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import { motion } from "framer-motion";
-import { Calendar, ArrowRight } from "lucide-react";
+import { Calendar, ArrowRight, AlertCircle } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { format } from "date-fns";
 import Link from "next/link";
@@ -52,6 +52,14 @@ export default function NewsEvents() {
     },
   };
 
+  function getImageUrl(url: string) {
+    if (!url) return "";
+    if (url.startsWith("http://") || url.startsWith("https://")) {
+      return url;
+    }
+    return process.env.NEXT_PUBLIC_API_URL + url;
+  }
+
   return (
     <section id="news" className="py-10 md:py-20 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -73,6 +81,11 @@ export default function NewsEvents() {
           <div className="text-center py-10 text-gray-500">Loading...</div>
         ) : error ? (
           <div className="text-center py-10 text-red-500">{error}</div>
+        ) : events.length === 0 ? (
+          <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+            <AlertCircle className="w-12 h-12 mb-4" />
+            <div className="text-xl font-semibold">No activities found</div>
+          </div>
         ) : (
           <div className="flex flex-col items-center justify-center gap-5">
             <motion.div
@@ -97,7 +110,7 @@ export default function NewsEvents() {
                   >
                     <div className="relative overflow-hidden">
                       <Image
-                        src={event.image}
+                        src={getImageUrl(event.image)}
                         alt={event.title}
                         loading="lazy"
                         width={600}
@@ -123,7 +136,7 @@ export default function NewsEvents() {
                   </motion.article>
                 ))}
             </motion.div>
-            <Link href="/news" passHref legacyBehavior>
+            <Link href="/news">
               <Button className="flex items-center justify-center mx-auto bg-green-500 hover:bg-green-400">
                 {t("seeAllActivities")} <ArrowRight className="w-4 h-4" />
               </Button>

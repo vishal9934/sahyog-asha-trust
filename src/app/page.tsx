@@ -9,8 +9,8 @@ export default function Home() {
   return (
     <Layout>
       <Hero />
-      <TrustGoals />
       <NewsEvents />
+      <TrustGoals />
       <Team />
       {/* <Contact /> */}
     </Layout>

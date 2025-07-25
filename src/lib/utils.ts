@@ -14,14 +14,12 @@ function mapEventData(strapiData: any[]): any[] {
     .map((item) => {
       let image = "/images/NoImage.png";
       if (item.coverImage) {
-        if (
-          item.coverImage.formats &&
-          item.coverImage.formats.medium &&
-          item.coverImage.formats.medium.url
-        ) {
-          image = `${STRAPI_HOST}${item.coverImage.formats.medium.url}`;
-        } else if (item.coverImage.url) {
-          image = `${STRAPI_HOST}${item.coverImage.url}`;
+        let url = item.coverImage.formats?.medium?.url || item.coverImage.url;
+        if (url) {
+          image =
+            url.startsWith("http://") || url.startsWith("https://")
+              ? url
+              : `${STRAPI_HOST}${url}`;
         }
       }
       return {

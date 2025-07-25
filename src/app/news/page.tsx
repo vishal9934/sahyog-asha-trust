@@ -3,7 +3,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { fetchEvents } from "@/lib/utils";
 import { format } from "date-fns";
-import { Calendar } from "lucide-react";
+import { Calendar, AlertCircle } from "lucide-react";
 import Image from "next/image";
 import { Button } from "@/components/ui/button";
 import { useLanguage } from "@/contexts/LanguageContext";
@@ -74,6 +74,11 @@ export default function NewsPage() {
             <div className="text-center py-10 text-gray-500">Loading...</div>
           ) : error ? (
             <div className="text-center py-10 text-red-500">{error}</div>
+          ) : events.length === 0 ? (
+            <div className="flex flex-col items-center justify-center py-20 text-gray-400">
+              <AlertCircle className="w-12 h-12 mb-4" />
+              <div className="text-xl font-semibold">No news found</div>
+            </div>
           ) : (
             <>
               <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

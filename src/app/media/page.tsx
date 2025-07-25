@@ -60,6 +60,14 @@ const mediaData = {
   ],
 };
 
+function getImageUrl(url: string) {
+  if (!url) return "";
+  if (url.startsWith("http://") || url.startsWith("https://")) {
+    return url;
+  }
+  return process.env.NEXT_PUBLIC_API_URL + url;
+}
+
 export default function MediaPage() {
   const { language } = useLanguage();
   const translations: Record<"en" | "hi", Record<string, string>> = {
@@ -236,7 +244,7 @@ export default function MediaPage() {
                       >
                         <div className="relative overflow-hidden aspect-[4/3]">
                           <Image
-                            src={item.image}
+                            src={getImageUrl(item.image)}
                             alt={`Media ${item.id}`}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -324,7 +332,7 @@ export default function MediaPage() {
                 {/* Image */}
                 <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
                   <Image
-                    src={selectedImage.image}
+                    src={getImageUrl(selectedImage.image)}
                     alt={`Media ${selectedImage.id}`}
                     width={1200}
                     height={800}
