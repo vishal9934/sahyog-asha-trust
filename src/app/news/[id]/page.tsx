@@ -6,7 +6,7 @@ import { useParams } from "next/navigation";
 import { fetchEventByDocumentId } from "@/lib/utils";
 import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
-import { AlertCircle } from "lucide-react";
+import { AlertCircle, Loader2 } from "lucide-react";
 
 export default function NewsDetailPage() {
   const { id } = useParams(); // `id` = documentId
@@ -41,8 +41,11 @@ export default function NewsDetailPage() {
   if (loading) {
     return (
       <Layout>
-        <div className="max-w-7xl mx-auto p-6 md:p-8 text-center text-gray-500">
-          Loading...
+        <div className="max-w-7xl mx-auto p-6 md:p-8 flex items-center justify-center min-h-[50vh]">
+          <div className="flex flex-col items-center space-y-4">
+            <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
+            <p className="text-gray-500">Loading...</p>
+          </div>
         </div>
       </Layout>
     );
