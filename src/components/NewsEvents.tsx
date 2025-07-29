@@ -9,6 +9,7 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import { fetchEvents } from "@/lib/utils";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 
 export default function NewsEvents() {
   const { t } = useLanguage();
@@ -16,6 +17,8 @@ export default function NewsEvents() {
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+
+  const router = useRouter();
 
   useEffect(() => {
     async function getEvents() {
@@ -111,7 +114,16 @@ export default function NewsEvents() {
                     key={event.id}
                     variants={itemVariants}
                     whileHover={{ y: -10 }}
-                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
+                    className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer"
+                    onClick={() => router.push(`/news/${event.documentId}`)}
+                    tabIndex={0}
+                    role="button"
+                    aria-label={`View details for ${event.title}`}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        router.push(`/news/${event.documentId}`);
+                      }
+                    }}
                   >
                     <div className="relative overflow-hidden">
                       <Image
