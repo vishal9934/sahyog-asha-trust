@@ -25,48 +25,15 @@ const staggerContainer = {
 };
 
 // Sample media data - replace with actual newspaper clippings
-const mediaData = {
+const mediaData: { all: Array<{ id: number; image: string; year: string }> } = {
   all: [
-    {
-      id: 1,
-      image: "/images/ngoLogo.png",
-      year: "2025",
-    },
-    {
-      id: 2,
-      image: "/images/ngoLogo.png",
-      year: "2025",
-    },
-    {
-      id: 3,
-      image: "/images/ngoLogo.png",
-      year: "2024",
-    },
-    {
-      id: 4,
-      image: "/images/ngoLogo.png",
-      year: "2024",
-    },
-    {
-      id: 5,
-      image: "/images/ngoLogo.png",
-      year: "2023",
-    },
-    {
-      id: 6,
-      image: "/images/ngoLogo.png",
-      year: "2023",
-    },
+    // {
+    //   id: 1,
+    //   image: "/images/ngoLogo.png",
+    //   year: "2025",
+    // },
   ],
 };
-
-function getImageUrl(url: string) {
-  if (!url) return "";
-  if (url.startsWith("http://") || url.startsWith("https://")) {
-    return url;
-  }
-  return process.env.NEXT_PUBLIC_API_URL + url;
-}
 
 export default function MediaPage() {
   const { language } = useLanguage();
@@ -201,30 +168,18 @@ export default function MediaPage() {
               onValueChange={setActiveTab}
               className="w-full"
             >
-              <TabsList className="grid w-full max-w-md mx-auto grid-cols-4 bg-gray-100 p-1 rounded-lg">
+              <TabsList className="flex w-full max-w-max mx-auto  bg-gray-100 py-1 px-3 gap-4 rounded-lg">
                 <TabsTrigger
                   value="all"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
+                  className="py-1 px-3 data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
                 >
                   {t("all")}
                 </TabsTrigger>
                 <TabsTrigger
                   value="2025"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
+                  className="py-1 px-3 data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
                 >
                   2025
-                </TabsTrigger>
-                <TabsTrigger
-                  value="2024"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
-                >
-                  2024
-                </TabsTrigger>
-                <TabsTrigger
-                  value="2023"
-                  className="data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
-                >
-                  2023
                 </TabsTrigger>
               </TabsList>
 
@@ -244,7 +199,7 @@ export default function MediaPage() {
                       >
                         <div className="relative overflow-hidden aspect-[4/3]">
                           <Image
-                            src={getImageUrl(item.image)}
+                            src={item.image}
                             alt={`Media ${item.id}`}
                             fill
                             className="object-cover group-hover:scale-110 transition-transform duration-500"
@@ -332,7 +287,7 @@ export default function MediaPage() {
                 {/* Image */}
                 <div className="bg-white rounded-lg overflow-hidden shadow-2xl">
                   <Image
-                    src={getImageUrl(selectedImage.image)}
+                    src={selectedImage.image}
                     alt={`Media ${selectedImage.id}`}
                     width={1200}
                     height={800}
