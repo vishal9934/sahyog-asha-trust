@@ -78,12 +78,16 @@ const translations = {
     mediaCoverage: "Media Coverage",
 
     // Team
-    teamTitle: "Our Team",
-    teamSubtitle: "Meet the dedicated people behind our mission",
     president: "President",
     secretary: "Secretary",
     treasurer: "Treasurer",
     coordinator: "Program Coordinator",
+    founder: "Founder",
+    vicePresident: "Vice President",
+    member: "Member",
+    meetLeadershipTeam: "Meet Our Leadership Team",
+    leadershipSubtitle:
+      "Dedicated professionals working together to create positive change in communities worldwide",
 
     // Contact
     contactTitle: "Get In Touch",
@@ -221,12 +225,16 @@ const translations = {
     mediaCoverage: "मीडिया कवरेज",
 
     // Team
-    teamTitle: "हमारी टीम",
-    teamSubtitle: "हमारे मिशन के पीछे समर्पित लोगों से मिलें",
     president: "अध्यक्ष",
     secretary: "सचिव",
     treasurer: "कोषाध्यक्ष",
-    coordinator: "कार्यक्रम समन्वयक",
+    coordinator: "संयोजक",
+    founder: "संस्थापक",
+    vicePresident: "उपाध्यक्ष",
+    member: "सदस्य",
+    meetLeadershipTeam: "हमारी नेतृत्व टीम से मिलें",
+    leadershipSubtitle:
+      "समर्पित पेशेवर जो दुनिया भर के समुदायों में सकारात्मक बदलाव लाने के लिए एक साथ काम कर रहे हैं",
 
     // Contact
     contactTitle: "संपर्क में रहें",

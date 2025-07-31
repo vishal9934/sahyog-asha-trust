@@ -1,136 +1,281 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
-import { Linkedin, Mail } from "lucide-react";
+import React, { useCallback, useEffect, useState } from "react";
+import useEmblaCarousel from "embla-carousel-react";
+import { Avatar, AvatarFallback } from "@/components/ui/avatar";
+import { Mail, Linkedin, ChevronLeft, ChevronRight, Phone } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
+import Image from "next/image";
 
 const teamMembers = [
   {
     id: 1,
-    name: "Rajesh Kumar",
-    roleKey: "president",
-    image: "/images/ngoLogo.png",
-    bio: "Leading social change initiatives for over 20 years.",
+    name: "Mithlesh Kumar",
+    nameHi: "मिथलेश कुमार",
+    position: "Founder",
+    positionKey: "founder",
+    mobile: "+91 8448206564",
+    image: "",
+    email: "sarah.johnson@ngo.org",
+    linkedin: "https://linkedin.com/in/sarahjohnson",
   },
   {
     id: 2,
-    name: "Priya Sharma",
-    roleKey: "secretary",
-    image: "/images/ngoLogo.png",
-    bio: "Expert in community development and women empowerment.",
+    name: "Ritik Kumar",
+    nameHi: "रितिक कुमार",
+    position: "President",
+    positionKey: "president",
+    mobile: "+91 8271669274",
+    image: "",
+    email: "michael.chen@ngo.org",
+    linkedin: "https://linkedin.com/in/michaelchen",
   },
   {
     id: 3,
-    name: "Amit Patel",
-    roleKey: "treasurer",
-    image: "/images/ngoLogo.png",
-    bio: "Financial management and strategic planning specialist.",
+    name: "Dilip Verma",
+    nameHi: "दिलीप वर्मा",
+    position: "Vice President",
+    positionKey: "vicePresident",
+    mobile: "+91 7992303603",
+    image: "",
+    email: "emily.rodriguez@ngo.org",
+    linkedin: "https://linkedin.com/in/emilyrodriguez",
   },
   {
     id: 4,
-    name: "Sunita Verma",
-    roleKey: "coordinator",
-    image: "/images/ngoLogo.png",
-    bio: "Coordinating programs and community outreach activities.",
+    name: "Sanjay Ram",
+    nameHi: "संजय राम",
+    position: "Treasurer",
+    positionKey: "treasurer",
+    mobile: "+91 6205098368",
+    image: "",
+    email: "david.thompson@ngo.org",
+    linkedin: "https://linkedin.com/in/davidthompson",
+  },
+  {
+    id: 5,
+    name: "Vijay uraon",
+    nameHi: "विजय उरांव",
+    position: "Secretary",
+    positionKey: "secretary",
+    mobile: "+91 9308710891",
+    image: "",
+    email: "aisha.patel@ngo.org",
+    linkedin: "https://linkedin.com/in/aishapatel",
+  },
+  {
+    id: 6,
+    name: "Saroj Ekka",
+    nameHi: "सरोज एक्का",
+    position: "Coordinator",
+    positionKey: "coordinator",
+    mobile: "+91 ",
+    image: "",
+    email: "james.wilson@ngo.org",
+    linkedin: "https://linkedin.com/in/jameswilson",
+  },
+  {
+    id: 7,
+    name: "Poonam Lakra",
+    nameHi: "पूनम लकड़ा",
+    position: "Member",
+    positionKey: "member",
+    mobile: "+91 6206181061",
+    image: "",
+    email: "james.wilson@ngo.org",
+    linkedin: "https://linkedin.com/in/jameswilson",
   },
 ];
 
-export default function Team() {
-  const { t } = useLanguage();
+const getInitials = (name: string): string => {
+  return name
+    .split(" ")
+    .map((word: string) => word.charAt(0))
+    .join("")
+    .toUpperCase()
+    .slice(0, 2);
+};
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2,
-      },
-    },
-  };
+const getAvatarColor = (index: number): string => {
+  const colors = [
+    "bg-blue-500",
+    "bg-green-500",
+    "bg-purple-500",
+    "bg-orange-500",
+    "bg-pink-500",
+    "bg-indigo-500",
+  ];
+  return colors[index % colors.length];
+};
 
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.6,
-      },
+export default function TeamSection() {
+  const { t, language } = useLanguage();
+  const [emblaRef, emblaApi] = useEmblaCarousel({
+    loop: true,
+    align: "start",
+    slidesToScroll: 1,
+    breakpoints: {
+      "(min-width: 768px)": { slidesToScroll: 1 },
     },
-  };
+  });
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollPrev();
+      setIsAutoPlaying(false); // Stop auto-sliding when user clicks
+    }
+  }, [emblaApi]);
+
+  const scrollNext = useCallback(() => {
+    if (emblaApi) {
+      emblaApi.scrollNext();
+      setIsAutoPlaying(false); // Stop auto-sliding when user clicks
+    }
+  }, [emblaApi]);
+
+  // Auto-play functionality
+  useEffect(() => {
+    if (!emblaApi || !isAutoPlaying) return;
+
+    const autoplay = setInterval(() => {
+      emblaApi.scrollNext();
+    }, 2000);
+
+    return () => clearInterval(autoplay);
+  }, [emblaApi, isAutoPlaying]);
+
+  // Stop auto-play on user interaction (touch/drag)
+  useEffect(() => {
+    if (!emblaApi) return;
+
+    const onPointerDown = () => setIsAutoPlaying(false);
+
+    emblaApi.on("pointerDown", onPointerDown);
+
+    return () => {
+      emblaApi.off("pointerDown", onPointerDown);
+    };
+  }, [emblaApi]);
 
   return (
-    <section id="team" className="py-10 md:py-20 bg-gray-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-8 md:mb-16"
-        >
-          <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 mb-4">
-            {t("teamTitle")}
+    <section className="py-8 md:py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+      <div className="container mx-auto px-4">
+        {/* Section Header */}
+        <div className="text-center mb-6 md:mb-12">
+          <h2 className="text-4xl font-bold text-gray-900 mb-4">
+            {t("meetLeadershipTeam")}
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            {t("teamSubtitle")}
+            {t("leadershipSubtitle")}
           </p>
-        </motion.div>
+        </div>
 
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
-        >
-          {teamMembers.map((member) => (
-            <motion.div
-              key={member.id}
-              variants={itemVariants}
-              whileHover={{ y: -10 }}
-              className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group"
-            >
-              <div className="relative overflow-hidden">
-                <img
-                  src={member.image}
-                  alt={member.name}
-                  className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-300"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
-                  <div className="flex space-x-3">
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
-                    >
-                      <Mail className="w-5 h-5" />
-                    </motion.button>
-                    <motion.button
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.9 }}
-                      className="w-10 h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
-                    >
-                      <Linkedin className="w-5 h-5" />
-                    </motion.button>
+        {/* Carousel Container */}
+        <div className="relative max-w-7xl mx-auto">
+          {/* Navigation Buttons */}
+          <button
+            onClick={scrollPrev}
+            className="absolute left-3 top-1/2 -translate-y-1/2 z-10 md:w-12 md:h-12 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 -ml-6"
+          >
+            <ChevronLeft className="w-6 h-6 text-gray-600" />
+          </button>
+
+          <button
+            onClick={scrollNext}
+            className="absolute right-3 top-1/2 -translate-y-1/2 z-10 md:w-12 md:h-12 w-9 h-9 bg-white rounded-full shadow-lg flex items-center justify-center hover:bg-gray-50 transition-colors duration-200 -mr-6"
+          >
+            <ChevronRight className="w-6 h-6 text-gray-600" />
+          </button>
+
+          {/* Embla Carousel */}
+          <div className="overflow-hidden" ref={emblaRef}>
+            <div className="flex">
+              {teamMembers.map((member, index) => (
+                <div
+                  key={member.id}
+                  className="flex-[0_0_100%] md:flex-[0_0_33.333%] px-3"
+                >
+                  <div className="px-1 md:px-2">
+                    <div className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group h-full transform hover:-translate-y-2">
+                      <div className="relative overflow-hidden">
+                        {member.image ? (
+                          <Image
+                            src={member.image}
+                            alt={
+                              language === "hi" ? member.nameHi : member.name
+                            }
+                            width={400}
+                            height={256}
+                            className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                          />
+                        ) : (
+                          <div className="w-full h-48 md:h-64 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
+                            <Avatar className="w-24 h-24">
+                              <AvatarFallback
+                                className={`${getAvatarColor(
+                                  index
+                                )} text-white text-2xl font-bold`}
+                              >
+                                {getInitials(
+                                  language === "hi"
+                                    ? member.nameHi
+                                    : member.name
+                                )}
+                              </AvatarFallback>
+                            </Avatar>
+                          </div>
+                        )}
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end justify-center pb-4">
+                          {/* <div className="flex space-x-2 md:space-x-3">
+                            <button
+                              onClick={() =>
+                                window.open(`mailto:${member.email}`, "_blank")
+                              }
+                              className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+                            >
+                              <Mail className="w-4 h-4 md:w-5 md:h-5" />
+                            </button>
+                            <button
+                              onClick={() =>
+                                window.open(`tel:${member.mobile}`, "_blank")
+                              }
+                              className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-green-600 hover:text-white transition-colors"
+                            >
+                              <Phone className="w-4 h-4 md:w-5 md:h-5" />
+                            </button>
+                            {member.linkedin && (
+                              <button
+                                onClick={() =>
+                                  window.open(member.linkedin, "_blank")
+                                }
+                                className="w-8 h-8 md:w-10 md:h-10 bg-white rounded-full flex items-center justify-center hover:bg-blue-600 hover:text-white transition-colors"
+                              >
+                                <Linkedin className="w-4 h-4 md:w-5 md:h-5" />
+                              </button>
+                            )}
+                          </div> */}
+                        </div>
+                      </div>
+
+                      <div className="p-4 md:p-6 text-center">
+                        <h3 className="text-lg md:text-xl font-bold text-gray-900 mb-2">
+                          {language === "hi" ? member.nameHi : member.name}
+                        </h3>
+                        <p className="text-blue-600 font-semibold mb-2 md:mb-3 text-sm md:text-base">
+                          {t(member.positionKey)}
+                        </p>
+                        <p className="text-gray-600 text-xs md:text-sm leading-relaxed">
+                          {member.mobile}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-
-              <div className="p-6 text-center">
-                <h3 className="text-xl font-bold text-gray-900 mb-2">
-                  {member.name}
-                </h3>
-                <p className="text-blue-600 font-semibold mb-3">
-                  {t(member.roleKey)}
-                </p>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {member.bio}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
