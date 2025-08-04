@@ -159,7 +159,10 @@ export default function TeamSection() {
   }, [emblaApi]);
 
   return (
-    <section className="py-8 md:py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50">
+    <section
+      id="team"
+      className="py-8 md:py-16 bg-gradient-to-br from-blue-50 via-white to-purple-50"
+    >
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="text-center mb-6 md:mb-12">
