@@ -27,11 +27,33 @@ const staggerContainer = {
 // Sample media data - replace with actual newspaper clippings
 const mediaData: { all: Array<{ id: number; image: string; year: string }> } = {
   all: [
-    // {
-    //   id: 1,
-    //   image: "/images/ngoLogo.png",
-    //   year: "2025",
-    // },
+      {
+        id: 1,
+        image: "/images/newspaper1.jpg",
+        year: "2025",
+      },
+      {
+        id: 2,
+        image: "/images/newspaper2.jpg",
+        year: "2025",
+      },
+      {
+        id: 3,
+        image: "/images/newspaper3.jpg",
+        year: "2025",
+      },
+      {
+        id: 4,
+        image: "/images/newspaper4.jpg",
+        year: "2025",
+      },
+      {
+        id: 5,
+        image: "/images/newspaper5.jpg",
+        year: "2025",
+      },
+      
+
   ],
 };
 

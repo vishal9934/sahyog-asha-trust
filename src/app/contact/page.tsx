@@ -104,8 +104,8 @@ export default function ContactPage() {
                     <div className="flex md:flex-row flex-col items-start gap-2">
                       <h3 className="w-35 font-medium">Registered Office:</h3>
                       <p className="text-gray-600 md:mt-0.5 text-left text-sm leading-relaxed flex-1">
-                        B-268, Block-B, Rangpuri Pahadi Malikpur,Kobi urf
-                        Rangpur South Delhi - 110037
+                        B-268, Block-B, Rangpuri Pahadi Malikpur,Kohi urf
+                        Rangpuri South Delhi - 110037
                       </p>
                     </div>
                     <p className="text-gray-600 text-left text-sm leading-relaxed">

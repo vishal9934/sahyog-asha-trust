@@ -31,7 +31,7 @@ const heroSlides = [
   },
   {
     id: 3,
-    image: "/images/edu.webp",
+    image: "/images/women-workers.png",
     titleKey: "slide3Title",
     subtitleKey: "slide3Subtitle",
     descriptionKey: "slide3Description",

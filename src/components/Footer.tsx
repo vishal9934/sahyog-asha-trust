@@ -3,7 +3,6 @@
 import React from "react";
 import { motion } from "framer-motion";
 import {
-  Heart,
   Phone,
   Mail,
   MapPin,
@@ -114,16 +113,19 @@ export default function Footer() {
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
                 <Phone className="w-5 h-5 text-blue-400" />
-                <span className="text-gray-300">+91 7992303603</span>
+                <span className="text-gray-300">+91 8448206564</span>
               </div>
               <div className="flex items-center space-x-3">
                 <Mail className="w-5 h-5 text-green-400" />
-                <span className="text-gray-300">dilipverma5@gmail.com</span>
+                <span className="text-gray-300">
+                  mithleshkumar7662624@gmail.com
+                </span>
               </div>
               <div className="flex items-start space-x-3">
                 <MapPin className="w-5 h-5 text-purple-400 mt-1" />
                 <span className="text-gray-300">
-                  Kamlanagar,Rd No. -4,Old H.B. Road,Kokar, Ranchi - 834001
+                  B-268, Block-B, Rangpuri Pahadi Malikpur,Kohi urf Rangpuri
+                  South Delhi - 110037
                 </span>
               </div>
             </div>
