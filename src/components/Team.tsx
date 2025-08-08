@@ -15,7 +15,7 @@ const teamMembers = [
     position: "Founder",
     positionKey: "founder",
     mobile: "+91 8448206564",
-    image: "",
+    image: "/images/mithilesh.jpg",
     email: "sarah.johnson@ngo.org",
     linkedin: "https://linkedin.com/in/sarahjohnson",
   },
@@ -26,7 +26,7 @@ const teamMembers = [
     position: "President",
     positionKey: "president",
     mobile: "+91 8271669274",
-    image: "",
+    image: "/images/ritik.jpg",
     email: "michael.chen@ngo.org",
     linkedin: "https://linkedin.com/in/michaelchen",
   },
@@ -48,7 +48,7 @@ const teamMembers = [
     position: "Treasurer",
     positionKey: "treasurer",
     mobile: "+91 6205098368",
-    image: "",
+    image: "/images/sanjay.jpg",
     email: "david.thompson@ngo.org",
     linkedin: "https://linkedin.com/in/davidthompson",
   },
@@ -210,7 +210,7 @@ export default function TeamSection() {
                             }
                             width={400}
                             height={256}
-                            className="w-full h-48 md:h-64 object-cover group-hover:scale-110 transition-transform duration-300"
+                            className="w-full h-48 md:h-64 fill group-hover:scale-110 transition-transform duration-300"
                           />
                         ) : (
                           <div className="w-full h-48 md:h-64 flex items-center justify-center bg-gradient-to-br from-gray-100 to-gray-200">
