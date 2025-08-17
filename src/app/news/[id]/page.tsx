@@ -133,7 +133,7 @@ export default function NewsDetailPage() {
                     src={getImageUrl(imgUrl)}
                     alt={img.name || "Gallery image"}
                     fill
-                    className="object-cover"
+                    className="fill"
                     sizes="(max-width: 768px) 100vw, 33vw"
                   />
                 </div>
