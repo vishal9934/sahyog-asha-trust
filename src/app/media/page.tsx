@@ -29,7 +29,7 @@ const mediaData: { all: Array<{ id: number; image: string; year: string }> } = {
   all: [
     {
       id: 1,
-      image: "/images/footballNews.jpg",
+      image: "/images/newspaper5.jpg",
       year: "2025",
     },
     {
@@ -49,7 +49,12 @@ const mediaData: { all: Array<{ id: number; image: string; year: string }> } = {
     },
     {
       id: 5,
-      image: "/images/newspaper5.jpg",
+      image: "/images/footballNews.jpg",
+      year: "2025",
+    },
+    {
+      id: 6,
+      image: "/images/meeting.jpg",
       year: "2025",
     },
   ],
@@ -87,13 +92,17 @@ export default function MediaPage() {
   const [selectedImage, setSelectedImage] = useState<any>(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [activeTab, setActiveTab] = useState("all");
-  const [filteredMedia, setFilteredMedia] = useState(mediaData.all);
+  const [filteredMedia, setFilteredMedia] = useState(
+    [...mediaData.all].reverse()
+  );
 
   useEffect(() => {
     if (activeTab === "all") {
-      setFilteredMedia(mediaData.all);
+      setFilteredMedia([...mediaData.all].reverse());
     } else {
-      setFilteredMedia(mediaData.all.filter((item) => item.year === activeTab));
+      setFilteredMedia(
+        mediaData.all.filter((item) => item.year === activeTab).reverse()
+      );
     }
   }, [activeTab]);
 

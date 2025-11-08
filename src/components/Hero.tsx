@@ -17,7 +17,7 @@ import Link from "next/link";
 const heroSlides = [
   {
     id: 1,
-    image: "/images/beautiful.png",
+    image: "/images/firsts.jpg",
     titleKey: "slide1Title",
     subtitleKey: "slide1Subtitle",
     descriptionKey: "slide1Description",
