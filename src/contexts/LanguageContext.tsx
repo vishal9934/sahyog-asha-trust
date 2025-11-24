@@ -79,6 +79,9 @@ const translations = {
 
     // Team
     president: "President",
+    delhiPresident: "Delhi Pradesh President",
+    delhiTreasurer: "Delhi Pradesh Treasurer",
+    delhiSecretary: "Delhi Pradesh Secretary",
     secretary: "Secretary",
     treasurer: "Treasurer",
     coordinator: "Program Coordinator",
@@ -226,6 +229,9 @@ const translations = {
 
     // Team
     president: "अध्यक्ष",
+    delhiPresident: "दिल्ली प्रदेश अध्यक्ष",
+    delhiTreasurer: "दिल्ली प्रदेश कोषाध्यक्ष",
+    delhiSecretary: "दिल्ली प्रदेश सचिव",
     secretary: "सचिव",
     treasurer: "कोषाध्यक्ष",
     coordinator: "संयोजक",
