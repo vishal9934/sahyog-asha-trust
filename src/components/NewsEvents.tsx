@@ -12,7 +12,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 
 export default function NewsEvents() {
-  const { t } = useLanguage();
+  const { t, language } = useLanguage();
 
   const [events, setEvents] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
@@ -62,6 +62,12 @@ export default function NewsEvents() {
     }
     return process.env.NEXT_PUBLIC_API_URL + url;
   }
+
+  const readMoreLabel = language === "hi" ? "आगे पढ़ें" : t("readMore");
+
+  const handleNavigate = (documentId: string) => {
+    router.push(`/news/${documentId}`);
+  };
 
   return (
     <section id="news" className="py-10 md:py-20 bg-white">
@@ -115,13 +121,13 @@ export default function NewsEvents() {
                     variants={itemVariants}
                     whileHover={{ y: -10 }}
                     className="bg-white rounded-xl shadow-lg overflow-hidden hover:shadow-xl transition-all duration-300 group cursor-pointer"
-                    onClick={() => router.push(`/news/${event.documentId}`)}
+                    onClick={() => handleNavigate(event.documentId)}
                     tabIndex={0}
                     role="button"
                     aria-label={`View details for ${event.title}`}
                     onKeyDown={(e) => {
                       if (e.key === "Enter" || e.key === " ") {
-                        router.push(`/news/${event.documentId}`);
+                        handleNavigate(event.documentId);
                       }
                     }}
                   >
@@ -146,9 +152,29 @@ export default function NewsEvents() {
                       <h3 className="text-xl font-bold text-gray-900 mb-3 group-hover:text-blue-600 transition-colors">
                         {event.title}
                       </h3>
-                      <p className="text-gray-600 leading-relaxed">
+                      <p
+                        className="text-gray-600 leading-relaxed overflow-hidden"
+                        style={{
+                          display: "-webkit-box",
+                          WebkitLineClamp: "10",
+                          WebkitBoxOrient: "vertical",
+                        }}
+                      >
                         {event.description}
                       </p>
+                      <div className="mt-4">
+                        <Button
+                          variant="outline"
+                          className="flex items-center space-x-2"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            handleNavigate(event.documentId);
+                          }}
+                        >
+                          <span>{readMoreLabel}</span>
+                          <ArrowRight className="w-4 h-4" />
+                        </Button>
+                      </div>
                     </div>
                   </motion.article>
                 ))}

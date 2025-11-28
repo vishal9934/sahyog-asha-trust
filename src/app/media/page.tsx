@@ -62,6 +62,11 @@ const mediaData: { all: Array<{ id: number; image: string; year: string }> } = {
       image: "/images/birsajayanti.jpg",
       year: "2025",
     },
+    {
+      id: 8,
+      image: "/images/kambal.jpg",
+      year: "2025",
+    },
   ],
 };
 

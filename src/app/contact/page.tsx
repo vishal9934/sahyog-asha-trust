@@ -47,7 +47,11 @@ const contactInfo = [
 ];
 
 const socialLinks = [
-  { icon: Facebook, href: "#", color: "text-blue-600" },
+  {
+    icon: Facebook,
+    href: "https://www.facebook.com/share/17SWU6CRfF/",
+    color: "text-blue-600",
+  },
   { icon: Twitter, href: "#", color: "text-sky-500" },
   { icon: Instagram, href: "#", color: "text-pink-600" },
   { icon: Linkedin, href: "#", color: "text-blue-700" },
