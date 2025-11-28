@@ -145,7 +145,7 @@ export default function Footer() {
           className="border-t border-gray-800 mt-12 pt-8 text-center"
         >
           <p className="text-gray-400">
-            © 2025 Sahyog Asha Trust. All rights reserved. | Designed by Vishal
+            © 2025 Sahyog Asha Trust. All rights reserved. | Developed by Vishal
             Chandrawanshi for social impact.
           </p>
         </motion.div>
