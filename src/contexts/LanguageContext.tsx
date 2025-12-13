@@ -88,6 +88,7 @@ const translations = {
     founder: "Founder",
     vicePresident: "Vice President",
     member: "Member",
+    nationalPresident: "National Women President",
     meetLeadershipTeam: "Meet Our Leadership Team",
     leadershipSubtitle:
       "Dedicated professionals working together to create positive change in communities worldwide",
@@ -238,6 +239,7 @@ const translations = {
     founder: "संस्थापक",
     vicePresident: "उपाध्यक्ष",
     member: "सदस्य",
+    nationalPresident: "राष्ट्रीय महिला अध्यक्ष",
     meetLeadershipTeam: "हमारी नेतृत्व टीम से मिलें",
     leadershipSubtitle:
       "समर्पित पेशेवर जो दुनिया भर के समुदायों में सकारात्मक बदलाव लाने के लिए एक साथ काम कर रहे हैं",
