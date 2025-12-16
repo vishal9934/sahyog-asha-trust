@@ -36,14 +36,14 @@ const donationMethods = [
     title: "Bank Transfer",
     description: "Direct bank transfer to our account",
     details: {
-      accountName: "Sahyog Asha Trust",
-      accountNumber: "1234567890123456",
-      ifscCode: "SBIN0001234",
-      bankName: "State Bank of India",
-      branch: "Community Branch, New Delhi",
+      accountName: "SAHYOG ASHA TRUST",
+      accountNumber: "5887349818",
+      ifscCode: "CBIN0282879",
+      bankName: "Central Bank of India",
+      branch: "BIJAIA HAZARIBAGH, JHARKHAND",
     },
   },
-  {
+  /*{
     icon: Smartphone,
     title: "UPI Payment",
     description: "Quick payment using UPI apps",
@@ -51,7 +51,7 @@ const donationMethods = [
       upiId: "sahyogashatrust@sbi",
       phoneNumber: "+91 98765 43210",
     },
-  },
+  },*/
 ];
 
 const donateTranslations = {
@@ -167,7 +167,7 @@ export default function DonatePage() {
             </motion.div>
 
             <motion.div
-              className="grid md:grid-cols-3 gap-8"
+              className="grid md:grid-cols-3 gap-8 "
               variants={staggerContainer}
               initial="initial"
               whileInView="animate"
@@ -289,7 +289,7 @@ export default function DonatePage() {
                             </>
                           )}
 
-                          {method.title === "UPI Payment" && (
+                          {/* {method.title === "UPI Payment" && (
                             <>
                               <div className="flex justify-between items-center p-3 bg-gray-50 rounded-lg">
                                 <span className="text-sm font-medium text-gray-700">
@@ -333,7 +333,7 @@ export default function DonatePage() {
                                 </p>
                               </div>
                             </>
-                          )}
+                          )} */}
                         </div>
                       </CardContent>
                     </Card>

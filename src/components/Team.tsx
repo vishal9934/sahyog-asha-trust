@@ -37,7 +37,7 @@ const teamMembers = [
     position: "Vice President",
     positionKey: "vicePresident",
     mobile: "+91 7992303603",
-    image: "",
+    image: "/images/dilip.jpg",
     email: "emily.rodriguez@ngo.org",
     linkedin: "https://linkedin.com/in/emilyrodriguez",
   },
