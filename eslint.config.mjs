@@ -1,6 +1,12 @@
 import { dirname } from "path";
 import { fileURLToPath } from "url";
 import { FlatCompat } from "@eslint/eslintrc";
+import typescriptEslintPlugin from "@typescript-eslint/eslint-plugin";
+import unusedImportsPlugin from "eslint-plugin-unused-imports";
+import importPlugin from "eslint-plugin-import";
+import jsxA11yPlugin from "eslint-plugin-jsx-a11y";
+import reactPlugin from "eslint-plugin-react";
+import reactHooksPlugin from "eslint-plugin-react-hooks";
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -14,12 +20,12 @@ const eslintConfig = [
   {
     files: ["**/*.{js,jsx,ts,tsx}"],
     plugins: {
-      "@typescript-eslint": require("@typescript-eslint/eslint-plugin"),
-      "unused-imports": require("eslint-plugin-unused-imports"),
-      import: require("eslint-plugin-import"),
-      "jsx-a11y": require("eslint-plugin-jsx-a11y"),
-      react: require("eslint-plugin-react"),
-      "react-hooks": require("eslint-plugin-react-hooks"),
+      "@typescript-eslint": typescriptEslintPlugin,
+      "unused-imports": unusedImportsPlugin,
+      import: importPlugin,
+      "jsx-a11y": jsxA11yPlugin,
+      react: reactPlugin,
+      "react-hooks": reactHooksPlugin,
     },
     rules: {
       // TypeScript specific rules
