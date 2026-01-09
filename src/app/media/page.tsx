@@ -67,6 +67,21 @@ const mediaData: { all: Array<{ id: number; image: string; year: string }> } = {
       image: "/images/kambal.jpg",
       year: "2025",
     },
+    {
+      id: 9,
+      image: "/images/jj.jpg",
+      year: "2026",
+    },
+    {
+      id: 10,
+      image: "/images/kk.jpg",
+      year: "2026",
+    },
+    {
+      id: 11,
+      image: "/images/tibbat.jpg",
+      year: "2026",
+    },
   ],
 };
 
@@ -219,6 +234,12 @@ export default function MediaPage() {
                   className="py-1 px-3 data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
                 >
                   2025
+                </TabsTrigger>
+                <TabsTrigger
+                  value="2026"
+                  className="py-1 px-3 data-[state=active]:bg-white data-[state=active]:text-blue-600 data-[state=active]:shadow-sm font-medium"
+                >
+                  2026
                 </TabsTrigger>
               </TabsList>
 
