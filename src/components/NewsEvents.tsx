@@ -27,7 +27,7 @@ export default function NewsEvents() {
       try {
         setLoading(true);
         setError(null);
-        const data = await fetchEvents();
+        const data = await fetchEvents(1, 3);
         if (isMounted) {
           setEvents(data.events); // use only the events array
           setError(null); // Clear any previous errors
