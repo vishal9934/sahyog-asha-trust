@@ -189,7 +189,7 @@ export default function ContactPage() {
                   <div className="flex items-center space-x-3">
                     <Phone className="w-5 h-5 text-blue-600" />
                     <span className="text-gray-700 font-medium">
-                      +91 11 2345 6789
+                      +91 7992303603
                     </span>
                   </div>
                   <div className="flex items-center space-x-3">
@@ -198,7 +198,7 @@ export default function ContactPage() {
                       href="mailto:info@sahyogashatrust.org"
                       className="text-gray-700 font-medium hover:underline"
                     >
-                      info@sahyogashatrust.org
+                      mithleshkumar@gmail.com
                     </a>
                   </div>
                 </div>

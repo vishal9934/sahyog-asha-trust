@@ -111,13 +111,12 @@ export default function NewsEvents() {
             <div className="flex flex-col items-center space-y-4">
               <Loader2 className="w-8 h-8 animate-spin text-blue-600" />
               <p className="text-gray-500">Loading events...</p>
-              <p className="text-sm text-gray-400">
-                This may take a moment if the service is waking up
-              </p>
             </div>
           </div>
         ) : error ? (
-          <div className="text-center py-10 text-red-500">{error}</div>
+          <div className=" py-10 text-red-500">
+            Taking time to load refresh the page
+          </div>
         ) : events.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-20 text-gray-400">
             <AlertCircle className="w-12 h-12 mb-4" />
